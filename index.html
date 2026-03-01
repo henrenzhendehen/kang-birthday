@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给最特别的你</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #f5a9f2, #d2b4de, #c9e6ff);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* 背景二进制代码 */
+        .binary-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 1;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0,0,0,0.1) 1px, transparent 1px),
+                radial-gradient(circle at 90% 80%, rgba(0,0,0,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        .binary-bg::before {
+            content: "01001000 01100001 01110000 01110000 01111001 00100000 01000010 01101001 01110010 01110100 01101000 01100100 01100001 01111001";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #000;
+            opacity: 0.1;
+            white-space: pre;
+            text-align: center;
+            width: 100%;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 105, 180, 0.5);
+            margin-bottom: 1.5rem;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 105, 180, 0.5); }
+            to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 105, 180, 0.8), 0 0 40px rgba(255, 182, 193, 0.6); }
+        }
+
+        /* 蛋糕容器 */
+        .cake-container {
+            margin: 2rem auto 2rem;
+            width: 220px;
+            height: 200px;
+            position: relative;
+        }
+
+        /* 蜡烛 */
+        .candle {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 2px;
+            z-index: 10;
+        }
+
+        .flame {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 20px;
+            background: #ffeb3b;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 10px #ff9800, 0 0 20px #ff5722;
+            animation: flicker 0.8s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+            50% { opacity: 0.8; transform: translateX(-52%) scale(1.1); }
+        }
+
+        /* 蛋糕层 */
+        .cake-layer {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .layer1 {
+            width: 200px;
+            height: 60px;
+            background: linear-gradient(to bottom, #f8a5c2, #e75480);
+            bottom: 0;
+        }
+
+        .layer2 {
+            width: 160px;
+            height: 50px;
+            background: linear-gradient(to bottom, #7ed6df, #22a6b3);
+            bottom: 60px;
+        }
+
+        .layer3 {
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(to bottom, #fdcb6e, #e17055);
+            bottom: 110px;
+        }
+
+        /* 奶油装饰 */
+        .icing {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            bottom: 60px;
+        }
+
+        .icing:nth-child(1) { left: 20px; }
+        .icing:nth-child(2) { left: 60px; }
+        .icing:nth-child(3) { left: 100px; }
+        .icing:nth-child(4) { left: 140px; }
+        .icing:nth-child(5) { left: 180px; }
+
+        .message {
+            font-size: 1.4rem;
+            color: #5a189a;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+        }
+
+        /* 飘落的爱心 */
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 1.5rem;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            color: #fff;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.2rem;
+            }
+            .message {
+                font-size: 1.2rem;
+                padding: 1.5rem;
+            }
+            .cake-container {
+                width: 180px;
+                height: 160px;
+            }
+            .layer1 { width: 160px; }
+            .layer2 { width: 130px; bottom: 50px; }
+            .layer3 { width: 100px; bottom: 95px; }
+            .candle { height: 30px; }
+            .flame { height: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景二进制 -->
+    <div class="binary-bg"></div>
+
+    <div class="container">
+        <!-- 标题：替换 [她的名字] -->
+        <h1 class="title">Happy Birthday, 康胜胜！</h1>
+        
+        <!-- 生日蛋糕 -->
+        <div class="cake-container">
+            <div class="candle">
+                <div class="flame"></div>
+            </div>
+            <div class="cake-layer layer1"></div>
+            <div class="cake-layer layer2"></div>
+            <div class="cake-layer layer3"></div>
+            <!-- 奶油装饰 -->
+            <div class="icing"></div>
+            <div class="icing"></div>
+            <div class="icing"></div>
+            <div class="icing"></div>
+            <div class="icing"></div>
+        </div>
+        
+        <!-- 祝福语：在这里写下你想对她说的话 -->
+        <div class="message">
+            <p>
+                康胜胜，生日快乐！<br><br>
+                这是我第一次给别人写代码，不是为了修复 Bug，也不是为了上线新功能，而是为了把心里的话，用我最熟悉的方式告诉你。<br><br>
+                愿你的每一天都像今天一样，被爱和快乐包围。未来的日子，希望能和你一起，书写属于我们的“人生代码”。<br><br>
+                —— 董世帅
+            </p>
+        </div>
+
+        <div class="footer">
+            Made with ❤️ by your programmer boyfriend
+        </div>
+    </div>
+
+    <script>
+        // 创建飘落的爱心
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            
+            // 随机位置和大小
+            const size = Math.random() * 20 + 10;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 5 + 5; // 5-10秒
+            
+            heart.style.left = `${left}vw`;
+            heart.style.fontSize = `${size}px`;
+            heart.style.animationDuration = `${duration}s`;
+            
+            document.body.appendChild(heart);
+            
+            // 一段时间后移除，防止内存泄漏
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        // 每隔一段时间创建一个爱心
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
